@@ -1,21 +1,23 @@
 // scripts.js
 
-var span = $("span");
-span.each(function(index, element) {
-	if(index % 2 == 0) {
-		$(element).css('color', 'red');
-		//$("span:even").css('color', 'red');
-	};
+$(function(){
+$(function(){
+	//this code will execute after the DOM is loaded
+	var carouselList = $("#carousel ul");
+	
+	
+	
+	function changeSlide() {
+		carouselList.animate({'marginLeft':-400}, 500, moveFirstSlide);
+	}
+	
+	function moveFirstSlide () {
+		var firstItem = carouselList.find("li:first");
+		var lastItem = carouselList.find("li:last");
+		
+		lastItem.after(firstItem);
+		carouselList.css({marginLeft:0});
+	}
+	
+	setInterval(changeSlide, 2000); //every 3 seconds, it performs a function to change the slide
 });
-
-var paragraphs = $('p');
-paragraphs.each(function(index, element) {
-
-    var button = '<button class="btn" data-tmp="' + index + '">Click me</button>'
-    $(element).append(button) 
-});
-
-$("button").click(function(){
-	alert($(this).attr("data-tmp"));
-});
-
